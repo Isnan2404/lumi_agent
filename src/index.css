@@ -1,0 +1,251 @@
+/* ===========================
+   LUMI — GLOBAL DESIGN SYSTEM
+   =========================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === CSS VARIABLES === */
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-terminal: #0d0d15;
+  --purple-main: #7c3aed;
+  --blue-main: #2563eb;
+  --purple-light: #a78bfa;
+  --cyan-accent: #22d3ee;
+  --text-primary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-glow: rgba(124, 58, 237, 0.4);
+  --gradient-main: linear-gradient(135deg, #7c3aed, #2563eb);
+}
+
+/* === GLOBAL RESET === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Space Mono", monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* === SCANLINE OVERLAY === */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* === TYPOGRAPHY === */
+.font-orbitron {
+  font-family: "Orbitron", sans-serif;
+}
+
+.font-mono {
+  font-family: "Space Mono", monospace;
+}
+
+.gradient-text {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === GLOW EFFECTS === */
+.glow-border {
+  box-shadow: 0 0 20px var(--border-glow);
+  border: 1px solid var(--border-glow);
+}
+
+.glow-border:hover {
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.6);
+}
+
+/* === LOADING DOTS ANIMATION === */
+@keyframes dotPulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+.dot-1 {
+  animation: dotPulse 1.4s infinite;
+  animation-delay: 0s;
+}
+.dot-2 {
+  animation: dotPulse 1.4s infinite;
+  animation-delay: 0.2s;
+}
+.dot-3 {
+  animation: dotPulse 1.4s infinite;
+  animation-delay: 0.4s;
+}
+
+/* === BLINK ANIMATION === */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1.5s infinite;
+}
+
+/* === TYPEWRITER CURSOR === */
+@keyframes cursorBlink {
+  0%,
+  100% {
+    border-right-color: var(--cyan-accent);
+  }
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+/* === CARD HOVER LIFT === */
+.card-hover {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
+}
+
+/* === SCROLLBAR CUSTOM === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--purple-main);
+  border-radius: 3px;
+}
+
+/* === MARKDOWN OUTPUT STYLING === */
+.markdown-output h2 {
+  font-family: "Orbitron", sans-serif;
+  color: var(--purple-light);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-glow);
+  padding-bottom: 0.5rem;
+}
+
+.markdown-output strong {
+  color: var(--cyan-accent);
+}
+
+.markdown-output ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.markdown-output ul li::before {
+  content: "▸ ";
+  color: var(--purple-light);
+}
+
+.markdown-output p {
+  color: var(--text-primary);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.markdown-output em {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+/* === RESPONSIVE FIXES === */
+@media (max-width: 640px) {
+  .font-orbitron {
+    letter-spacing: 0.05em;
+  }
+
+  /* Terminal input responsif */
+  input[type="text"] {
+    font-size: 14px;
+  }
+}
+
+/* === BUTTON ACTIVE STATE === */
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* === SECTION MAX WIDTH === */
+section {
+  width: 100%;
+}
+
+/* === LUMI CHARACTER ANIMATIONS === */
+
+/* Float idle — dipakai di hero section */
+@keyframes lumiFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* Think bounce — dipakai saat loading */
+@keyframes lumiThink {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 15px rgba(124,58,237,0.6); }
+  50%       { transform: scale(1.08); box-shadow: 0 0 25px rgba(124,58,237,0.9); }
+}
+
+/* Fade in dari bawah — output card muncul */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Terapkan float ke gambar hero */
+.lumi-hero-img {
+  animation: lumiFloat 4s ease-in-out infinite;
+}

@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Environment variables — JANGAN PERNAH COMMIT FILE INI
+.env
+.env.local
+.env.production
+
+# Build output
+dist/
+
+# Editor
+.vscode/
+.idea/
