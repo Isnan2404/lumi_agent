@@ -249,3 +249,91 @@ section {
 .lumi-hero-img {
   animation: lumiFloat 4s ease-in-out infinite;
 }
+
+/* ===========================
+   F-09 ADDITIONS
+   =========================== */
+
+/* === HERO SECTION GRID BACKGROUND === */
+.hero-section {
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.06) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* === LUMI CHARACTER ANIMATIONS === */
+@keyframes lumiFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes lumiGlow {
+  0%, 100% { filter: drop-shadow(0 0 8px #7c3aed); }
+  50%       { filter: drop-shadow(0 0 28px #22d3ee); }
+}
+
+@keyframes lumiBounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-20px); }
+  60%  { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-lumi-idle     { animation: lumiFloat  3s ease-in-out infinite; }
+.animate-lumi-thinking { animation: lumiGlow   1s ease-in-out infinite; }
+.animate-lumi-done     { animation: lumiBounce 0.6s ease forwards; }
+
+/* === TICKER SCROLL ANIMATION === */
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-scroll {
+  animation: tickerScroll 30s linear infinite;
+}
+
+.ticker-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* === STEP FADE IN === */
+@keyframes stepFadeIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* === CAPABILITY CARD HOVER === */
+.capability-card {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.capability-card:hover {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+  transform: translateY(-6px);
+}
+
+/* === FADE IN UP (output card) === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === SCANLINE OVERLAY TAMBAHAN === */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.025) 2px,
+    rgba(0, 0, 0, 0.025) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
