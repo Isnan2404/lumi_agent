@@ -322,7 +322,7 @@ export default function OutputCard({ content, mode, liveData }) {
       {mode === 'TRANSLATE' && <DangerBadges content={content} />}
 
       {/* Markdown AI output */}
-      <div className="markdown-output" style={{ color: 'var(--cyan-accent)' }}>
+      <div className="markdown-output">
         <ReactMarkdown>{content}</ReactMarkdown>
       </div>
     </div>

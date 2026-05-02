@@ -7,15 +7,13 @@ import LumiTerminal from './components/LumiTerminal'
 import Footer from './components/Footer'
 
 function App() {
-  // agentState diangkat ke sini agar HeroSection bisa menerima
-  // dan animasi karakter Lumi sinkron dengan aksi di Terminal
-  const [agentState, setAgentState] = useState('idle') // 'idle' | 'thinking' | 'done'
+  const [agentState, setAgentState] = useState('idle')
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <LiveTicker />
       <Navbar />
-      <main className="flex flex-col items-center">
+      <main>
         <HeroSection agentState={agentState} />
         <CapabilityCards />
         <LumiTerminal agentState={agentState} setAgentState={setAgentState} />

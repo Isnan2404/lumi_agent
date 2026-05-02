@@ -1,64 +1,80 @@
 export default function Navbar() {
-  function scrollToTerminal() {
-    document.getElementById('terminal')?.scrollIntoView({ behavior: 'smooth' })
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <nav
       className="w-full sticky top-0 z-50"
       style={{
-        backgroundColor: 'rgba(10,10,15,0.92)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid var(--border-glow)',
+        backgroundColor: 'rgba(7,7,14,0.92)',
+        backdropFilter: 'blur(16px)',
+        borderBottom: '1px solid var(--border-subtle)',
       }}
     >
-      {/* Inner container — padding responsif */}
-      <div className="flex items-center justify-between px-4 py-3 max-w-6xl mx-auto">
-
-        {/* Logo + status dalam satu grup */}
-        <div className="flex items-center gap-2 min-w-0">
+      <div className="flex items-center justify-between px-6 py-3 max-w-7xl mx-auto">
+        {/* Logo */}
+        <div className="flex items-center gap-3">
           <span
-            className="font-orbitron font-black gradient-text tracking-widest flex-shrink-0"
-            style={{ fontSize: 'clamp(0.9rem, 4vw, 1.25rem)' }}
+            className="font-orbitron font-black gradient-text tracking-widest"
+            style={{ fontSize: 'clamp(1rem, 3vw, 1.3rem)' }}
           >
             LUMI
           </span>
-          {/* Status indicator — tersembunyi di layar sangat kecil */}
-          <div
-            className="hidden xs:flex items-center gap-1 flex-shrink-0"
-            style={{ minWidth: 0 }}
+          <span
+            className="hidden md:flex items-center gap-1.5 text-xs"
+            style={{ color: 'var(--text-muted)', fontFamily: 'Space Mono' }}
           >
             <span
-              className="w-1.5 h-1.5 rounded-full blink flex-shrink-0"
-              style={{ backgroundColor: '#22c55e', display: 'inline-block' }}
-            ></span>
-            <span
-              className="font-orbitron tracking-widest truncate"
-              style={{
-                color: '#22c55e',
-                fontSize: 'clamp(0.5rem, 2vw, 0.65rem)',
-              }}
-            >
-              LUMI_OS_ACTIVE
-            </span>
-          </div>
+              className="w-1.5 h-1.5 rounded-full blink"
+              style={{ backgroundColor: '#10B981', display: 'inline-block' }}
+            />
+            LUMI_OS_ACTIVE
+          </span>
         </div>
 
-        {/* Tombol ACTIVATE */}
+        {/* Nav Links */}
+        <div className="hidden md:flex items-center gap-6">
+          {[
+            { label: 'SKILLS',   id: 'capabilities' },
+            { label: 'TERMINAL', id: 'terminal'      },
+          ].map(({ label, id }) => (
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              className="text-xs tracking-widest transition-colors duration-200"
+              style={{
+                fontFamily: 'Orbitron, sans-serif',
+                color: 'var(--text-muted)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--purple-light)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {/* CTA */}
         <button
-          onClick={scrollToTerminal}
-          className="flex-shrink-0 rounded font-bold tracking-widest transition-all duration-200"
+          onClick={() => scrollTo('terminal')}
+          className="rounded font-bold tracking-widest transition-all duration-200"
           style={{
             fontFamily: 'Orbitron, sans-serif',
-            fontSize: 'clamp(0.55rem, 2.5vw, 0.75rem)',
-            padding: 'clamp(6px, 1.5vw, 8px) clamp(10px, 3vw, 18px)',
+            fontSize: 'clamp(0.6rem, 2vw, 0.75rem)',
+            padding: 'clamp(7px, 1.5vw, 9px) clamp(12px, 3vw, 20px)',
             background: 'var(--gradient-main)',
-            color: '#ffffff',
+            color: '#fff',
             border: 'none',
-            boxShadow: '0 0 15px var(--border-glow)',
+            boxShadow: '0 0 20px rgba(124,58,237,0.4)',
             cursor: 'pointer',
             whiteSpace: 'nowrap',
           }}
+          onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 30px rgba(124,58,237,0.7)'}
+          onMouseLeave={e => e.currentTarget.style.boxShadow = '0 0 20px rgba(124,58,237,0.4)'}
         >
           ACTIVATE ▶
         </button>

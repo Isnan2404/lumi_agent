@@ -1,77 +1,67 @@
-/* ===========================
-   LUMI — GLOBAL DESIGN SYSTEM
-   =========================== */
-
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* === CSS VARIABLES === */
+/* ================================
+   LUMI — DESIGN SYSTEM v2
+   ================================ */
+
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #111118;
-  --bg-terminal: #0d0d15;
-  --purple-main: #7c3aed;
-  --blue-main: #2563eb;
-  --purple-light: #a78bfa;
-  --cyan-accent: #22d3ee;
-  --text-primary: #f1f5f9;
-  --text-muted: #94a3b8;
-  --border-glow: rgba(124, 58, 237, 0.4);
-  --gradient-main: linear-gradient(135deg, #7c3aed, #2563eb);
+  --bg-primary:    #07070E;
+  --bg-secondary:  #0F0F1A;
+  --bg-card:       #13131F;
+  --bg-terminal:   #0B0B16;
+  --purple-main:   #7C3AED;
+  --purple-dim:    #4C1D95;
+  --blue-main:     #2563EB;
+  --purple-light:  #A78BFA;
+  --cyan-accent:   #22D3EE;
+  --green-live:    #10B981;
+  --text-primary:  #E2E8F0;
+  --text-secondary:#CBD5E1;
+  --text-muted:    #64748B;
+  --border-subtle: rgba(124, 58, 237, 0.2);
+  --border-glow:   rgba(124, 58, 237, 0.45);
+  --gradient-main: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%);
+  --gradient-card: linear-gradient(145deg, #13131F 0%, #0F0F1A 100%);
 }
 
-/* === GLOBAL RESET === */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
   min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* === SCANLINE OVERLAY === */
+/* Scanline overlay */
 body::before {
-  content: "";
+  content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
+    0deg, transparent, transparent 2px,
+    rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 4px
   );
   pointer-events: none;
   z-index: 9999;
 }
 
-/* === TYPOGRAPHY === */
-.font-orbitron {
-  font-family: "Orbitron", sans-serif;
-}
-
-.font-mono {
-  font-family: "Space Mono", monospace;
-}
+/* ================================
+   TYPOGRAPHY
+   ================================ */
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+.font-mono     { font-family: 'Space Mono', monospace; }
 
 .gradient-text {
   background: var(--gradient-main);
@@ -80,260 +70,221 @@ body::before {
   background-clip: text;
 }
 
-/* === GLOW EFFECTS === */
-.glow-border {
-  box-shadow: 0 0 20px var(--border-glow);
-  border: 1px solid var(--border-glow);
-}
-
-.glow-border:hover {
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.6);
-}
-
-/* === LOADING DOTS ANIMATION === */
-@keyframes dotPulse {
-  0%,
-  80%,
-  100% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-}
-
-.dot-1 {
-  animation: dotPulse 1.4s infinite;
-  animation-delay: 0s;
-}
-.dot-2 {
-  animation: dotPulse 1.4s infinite;
-  animation-delay: 0.2s;
-}
-.dot-3 {
-  animation: dotPulse 1.4s infinite;
-  animation-delay: 0.4s;
-}
-
-/* === BLINK ANIMATION === */
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-.blink {
-  animation: blink 1.5s infinite;
-}
-
-/* === TYPEWRITER CURSOR === */
-@keyframes cursorBlink {
-  0%,
-  100% {
-    border-right-color: var(--cyan-accent);
-  }
-  50% {
-    border-right-color: transparent;
-  }
-}
-
-/* === CARD HOVER LIFT === */
-.card-hover {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
-}
-
-/* === SCROLLBAR CUSTOM === */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--purple-main);
-  border-radius: 3px;
-}
-
-/* === MARKDOWN OUTPUT STYLING === */
-.markdown-output h2 {
-  font-family: "Orbitron", sans-serif;
-  color: var(--purple-light);
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--border-glow);
-  padding-bottom: 0.5rem;
-}
-
-.markdown-output strong {
-  color: var(--cyan-accent);
-}
-
-.markdown-output ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.markdown-output ul li::before {
-  content: "▸ ";
-  color: var(--purple-light);
-}
-
-.markdown-output p {
-  color: var(--text-primary);
-  line-height: 1.7;
-  margin-bottom: 0.75rem;
-  font-size: 0.875rem;
-}
-
-.markdown-output em {
-  color: var(--text-muted);
-  font-style: italic;
-  font-size: 0.8rem;
-}
-
-/* === RESPONSIVE FIXES === */
-@media (max-width: 640px) {
-  .font-orbitron {
-    letter-spacing: 0.05em;
-  }
-
-  /* Terminal input responsif */
-  input[type="text"] {
-    font-size: 14px;
-  }
-}
-
-/* === BUTTON ACTIVE STATE === */
-button:active:not(:disabled) {
-  transform: scale(0.97);
-}
-
-/* === SECTION MAX WIDTH === */
-section {
-  width: 100%;
-}
-
-/* === LUMI CHARACTER ANIMATIONS === */
-
-/* Float idle — dipakai di hero section */
-@keyframes lumiFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-10px); }
-}
-
-/* Think bounce — dipakai saat loading */
-@keyframes lumiThink {
-  0%, 100% { transform: scale(1);    box-shadow: 0 0 15px rgba(124,58,237,0.6); }
-  50%       { transform: scale(1.08); box-shadow: 0 0 25px rgba(124,58,237,0.9); }
-}
-
-/* Fade in dari bawah — output card muncul */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Terapkan float ke gambar hero */
-.lumi-hero-img {
-  animation: lumiFloat 4s ease-in-out infinite;
-}
-
-/* ===========================
-   F-09 ADDITIONS
-   =========================== */
-
-/* === HERO SECTION GRID BACKGROUND === */
+/* ================================
+   HERO SECTION
+   ================================ */
 .hero-section {
   background-color: var(--bg-primary);
   background-image:
-    linear-gradient(rgba(124, 58, 237, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124, 58, 237, 0.06) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(124,58,237,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  position: relative;
 }
 
-/* === LUMI CHARACTER ANIMATIONS === */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+  background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(124,58,237,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ================================
+   CARDS
+   ================================ */
+.capability-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.capability-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,58,237,0.6), transparent);
+}
+
+.capability-card:hover {
+  border-color: var(--purple-main);
+  box-shadow: 0 0 30px rgba(124,58,237,0.25), inset 0 0 30px rgba(124,58,237,0.03);
+  transform: translateY(-6px);
+}
+
+/* ================================
+   GLOW UTILITIES
+   ================================ */
+.glow-purple {
+  box-shadow: 0 0 20px rgba(124,58,237,0.4);
+}
+.glow-border {
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 0 20px rgba(124,58,237,0.15);
+}
+
+/* ================================
+   ANIMATIONS — LUMI CHARACTER
+   ================================ */
 @keyframes lumiFloat {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-12px); }
+  50%       { transform: translateY(-14px); }
 }
-
 @keyframes lumiGlow {
-  0%, 100% { filter: drop-shadow(0 0 8px #7c3aed); }
-  50%       { filter: drop-shadow(0 0 28px #22d3ee); }
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(124,58,237,0.7)); }
+  50%       { filter: drop-shadow(0 0 30px rgba(34,211,238,0.9)); }
 }
-
 @keyframes lumiBounce {
   0%   { transform: translateY(0); }
-  30%  { transform: translateY(-20px); }
+  30%  { transform: translateY(-22px); }
   60%  { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
 
-.animate-lumi-idle     { animation: lumiFloat  3s ease-in-out infinite; }
+.animate-lumi-idle     { animation: lumiFloat  3.5s ease-in-out infinite; }
 .animate-lumi-thinking { animation: lumiGlow   1s ease-in-out infinite; }
-.animate-lumi-done     { animation: lumiBounce 0.6s ease forwards; }
+.animate-lumi-done     { animation: lumiBounce 0.7s ease forwards; }
 
-/* === TICKER SCROLL ANIMATION === */
+/* ================================
+   ANIMATIONS — UI
+   ================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0; }
+  40%           { opacity: 1; }
+}
+@keyframes stepFadeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes greetingSlideIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 @keyframes tickerScroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-.ticker-scroll {
-  animation: tickerScroll 30s linear infinite;
+.blink     { animation: blink 1.5s infinite; }
+.dot-1     { animation: dotPulse 1.4s infinite; animation-delay: 0s; }
+.dot-2     { animation: dotPulse 1.4s infinite; animation-delay: 0.2s; }
+.dot-3     { animation: dotPulse 1.4s infinite; animation-delay: 0.4s; }
+
+.ticker-scroll       { animation: tickerScroll 35s linear infinite; }
+.ticker-scroll:hover { animation-play-state: paused; }
+
+/* ================================
+   SCROLLBAR
+   ================================ */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--purple-dim); border-radius: 3px; }
+
+/* ================================
+   MARKDOWN OUTPUT — READABLE
+   ================================ */
+.markdown-output { color: var(--text-secondary); }
+
+.markdown-output h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--purple-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: 0.05em;
 }
 
-.ticker-scroll:hover {
-  animation-play-state: paused;
+.markdown-output strong {
+  color: var(--purple-light);
+  font-weight: 700;
 }
 
-/* === STEP FADE IN === */
-@keyframes stepFadeIn {
-  from { opacity: 0; transform: translateX(-8px); }
-  to   { opacity: 1; transform: translateX(0); }
+.markdown-output ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0;
 }
 
-/* === CAPABILITY CARD HOVER === */
-.capability-card {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+.markdown-output ul li {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  padding-left: 1rem;
+  position: relative;
 }
 
-.capability-card:hover {
-  border-color: #7c3aed !important;
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
-  transform: translateY(-6px);
+.markdown-output ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--purple-light);
 }
 
-/* === FADE IN UP (output card) === */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+.markdown-output p {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 0.6rem;
+  font-size: 0.82rem;
 }
 
-/* === SCANLINE OVERLAY TAMBAHAN === */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.025) 2px,
-    rgba(0, 0, 0, 0.025) 4px
-  );
-  pointer-events: none;
-  z-index: 9998;
+.markdown-output em {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.78rem;
+}
+
+/* ================================
+   BUTTON BASE
+   ================================ */
+button:active:not(:disabled) { transform: scale(0.97); }
+
+/* ================================
+   PROACTIVE GREETING
+   ================================ */
+.greeting-card {
+  animation: greetingSlideIn 0.5s ease forwards;
+  background: linear-gradient(135deg, rgba(124,58,237,0.08) 0%, rgba(37,99,235,0.05) 100%);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.greeting-action-btn {
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: 8px;
+  color: var(--purple-light);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.greeting-action-btn:hover {
+  background: rgba(124,58,237,0.25);
+  border-color: var(--purple-main);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(124,58,237,0.3);
 }
